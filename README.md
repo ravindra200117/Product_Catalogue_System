@@ -19,3 +19,4 @@
 
 4. Database Schema 
 The database schema includes the following tables:
+![image](https://github.com/ravindra200117/Product_Catalogue_System/assets/153836974/34fa55d3-03ac-4043-b423-5ee4e95ce220)
