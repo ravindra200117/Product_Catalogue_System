@@ -22,7 +22,8 @@ The database schema includes the following tables:
 
 5. RESTful API Endpoints
    
-   The following RESTful API endpoints are available: 
+   The following RESTful API endpoints are available:
+   
    • GET /http://localhost:9797/products: Retrieve all products 
    • GET /http://localhost:9797/products/2:Retrieve a specific product by ID 
    • POST /http://localhost:9797/products: Create a new product 
