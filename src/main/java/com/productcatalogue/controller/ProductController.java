@@ -27,16 +27,35 @@ public class ProductController
 	
 	//get All products
 	@GetMapping("/products")
-	public ResponseEntity<List<Product>> getProducts()
+	public ResponseEntity<List<Product>> getProducts(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sortField,
+            @RequestParam(defaultValue = "asc") String sortOrder)
 	{
-		List<Product> list= productService.getAllProducts();
-		if(list.size()<=0)
-		{
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		}
-		
-		return ResponseEntity.status(HttpStatus.CREATED).body(list);
-	}
+        
+        try 
+	{
+            // Create PageRequest for pagination and sorting
+            PageRequest pageRequest = PageRequest.of(
+                    page, size, Sort.by(sortOrder.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, sortField)
+            );
+
+            // Fetch products using pagination and sorting
+            Page<Product> productPage = productService.getAllProducts(pageRequest);
+            List<Product> productList = productPage.getContent();
+
+            if (productList.isEmpty())
+	    {
+                return ResponseEntity.notFound().build();
+            }
+
+            return ResponseEntity.ok(productList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 	
 	//get single product
 	@GetMapping("/products/{id}")
