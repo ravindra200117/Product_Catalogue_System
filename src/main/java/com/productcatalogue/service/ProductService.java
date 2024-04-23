@@ -83,4 +83,10 @@ public class ProductService
 
         return products;
     }
+
+	// Get all products with pagination
+        public Page<Product> getAllProducts(Pageable pageable)
+	{
+        	return productRepository.findAll(pageable);
+    	}
 }
