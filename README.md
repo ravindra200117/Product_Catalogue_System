@@ -30,6 +30,8 @@ The database schema includes the following tables:
    • PUT / http://localhost:9797/products/2: Update an existing product 
    • DELETE / http://localhost:9797/products/2: Delete a product by ID 
    • GET/ http://localhost:9797/products/search?category=BOOK: Search products by name, category, or attribute
+   • GET /http://localhost:9797/products?page=1&size=1 : This endpoint would retrieve the first page of products with one product per 
+           page.
 
    Example :
 
